@@ -6,7 +6,7 @@
 
 The code in this repo can be used to reproduce the results in the paper, by following these guidelines:
 - Use your favorite package manager to install the requirements.txt file.
-- Notice that all scripts use `wandb` to log the experiments results. This platform this free. For more information: https://wandb.ai/site. 
+- Notice that all scripts use `wandb` to log the experiments results. This platform is free. For more information: https://wandb.ai/site. 
 - Below we describe the most straightforward way to reproduce the results in the paper. However, there are other flags in the script which can be seen by running `python script.py --help`.
 
 **(*) If you find any bugs, please open a Github issue - we are monitoring it and will fix it.**
