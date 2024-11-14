@@ -6,14 +6,13 @@ import pandas as pd
 import seaborn as sns
 import torch
 import wandb
-from scipy.stats import hmean
-from sklearn import metrics
 from transformers import set_seed
 
+from compute_correctness import compute_correctness
 from generate_model_answers import generate_model_answers
-from compute_correctness import CORRECTNESS_FN, compute_correctness
-from probing_utils import get_embeddings_in_token, extract_internal_reps_all_layers_and_tokens, load_model_and_validate_gpu, \
-    probe_specific_layer_token, LAYERS_TO_TRACE, compile_probing_indices, LIST_OF_DATASETS, LIST_OF_MODELS, MODEL_FRIENDLY_NAMES
+from probing_utils import load_model_and_validate_gpu, \
+    LIST_OF_DATASETS, LIST_OF_MODELS, \
+    MODEL_FRIENDLY_NAMES, LIST_OF_TEST_DATASETS
 
 
 def parse_args_and_init_wandb():
@@ -23,7 +22,7 @@ def parse_args_and_init_wandb():
     parser.add_argument("--model", choices=LIST_OF_MODELS)
     parser.add_argument("--seed", type=int)
     parser.add_argument("--n_resamples", default=30, type=int)
-    parser.add_argument("--dataset", choices=LIST_OF_DATASETS, required=True)
+    parser.add_argument("--dataset", choices=LIST_OF_DATASETS+LIST_OF_TEST_DATASETS, required=True)
     parser.add_argument("--top_p", type=float, default=1.0)
     parser.add_argument("--temperature", type=float, default=1.0)
     parser.add_argument("--limit_samples", type=int, required=False, default=None, help="Resample only a subset of the dataset")
@@ -110,7 +109,7 @@ def main(args):
     torch.save(all_textual_answers, f"../output/resampling/{MODEL_FRIENDLY_NAMES[args.model]}_{args.dataset}_{args.n_resamples}_textual_answers{args.tag}.pt")
     torch.save(all_input_output_ids, f"../output/resampling/{MODEL_FRIENDLY_NAMES[args.model]}_{args.dataset}_{args.n_resamples}_input_output_ids{args.tag}.pt")
 
-    if len(all_exact_answers) != 0:
+    if len(all_exact_answers['exact_answer']) != 0:
         all_exact_answers['exact_answer'] = [[all_exact_answers['exact_answer'][i][j] for i in range(0, args.n_resamples)] for j in
                                       range(0, len(data))]
         all_exact_answers['valid_exact_answer'] = [[all_exact_answers['valid_exact_answer'][i][j] for i in range(0, args.n_resamples)] for j in

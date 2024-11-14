@@ -1,0 +1,14 @@
+baukit @ git+https://github.com/davidbau/baukit
+datasets==2.21.0
+matplotlib==3.9.2
+numpy==1.26.4
+pandas==1.5.1
+scikit_learn==1.5.2
+scipy==1.14.1
+seaborn==0.13.2
+torch==2.2.0
+tqdm==4.66.5
+transformers==4.42.3
+wandb==0.15.12
+accelerate==0.27.0
+tokenizers==0.19.1
