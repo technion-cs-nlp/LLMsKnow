@@ -2,7 +2,7 @@
 
 ## [Hadas Orgad](https://orgadhadas.github.io/), [Michael Toker](https://tokeron.github.io/), [Zorik Gekhman](https://zorikg.github.io/), [Roi Reichart](https://roireichart.com/), [Idan Szpektor](https://sites.google.com/site/idanszpektor), [Hadas Kotek](https://hkotek.com/), [Yonatan Belinkov](https://belinkov.com/)
 
-## [arXiv](https://arxiv.org/abs/2303.08084) | [Website](https://llms-know.github.io/)
+## [arXiv](https://arxiv.org/abs/2410.02707) | [Website](https://llms-know.github.io/)
 
 The code in this repo can be used to reproduce the results in the paper, by following these guidelines:
 - Use your favorite package manager to install the requirements.txt file.
