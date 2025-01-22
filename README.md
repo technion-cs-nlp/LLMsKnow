@@ -5,6 +5,7 @@
 ## [arXiv](https://arxiv.org/abs/2410.02707) | [Website](https://llms-know.github.io/)
 
 The code in this repo can be used to reproduce the results in the paper, by following these guidelines:
+- We used Python 3.11.6.
 - Use your favorite package manager to install the requirements.txt file.
 - Notice that all scripts use `wandb` to log the experiments results. This platform is free. For more information: https://wandb.ai/site. 
 - Below we describe the most straightforward way to reproduce the results in the paper. However, there are other flags in the script which can be seen by running `python script.py --help`.
@@ -47,7 +48,7 @@ and
 
 Next, you need to extract exact answer, also for the train and test sets separately:
 
-    extract_exact_answer.py --model [model name] --source_file [greedy output file] --destination_file [name for exact answers file]
+    extract_exact_answer.py --model [model name] --dataset [dataset name]
 
 Not all tasks need to extract exact answers, because we are able to extract it during generation. These are the datasets:
 - Winobias
