@@ -100,7 +100,12 @@ def tokenize(prompt, tokenizer, model_name, tokenizer_args=None):
         messages = [
             {"role": "user", "content": prompt}
         ]
-        model_input = tokenizer.apply_chat_template(messages, return_tensors="pt", **(tokenizer_args or {})).to('cuda')
+        model_input = tokenizer.apply_chat_template(
+            messages,
+            return_tensors="pt",
+            add_generation_prompt=True,
+            **(tokenizer_args or {}),
+        ).to('cuda')
     else: # non instruct model
         model_input = tokenizer(prompt, return_tensors='pt', **(tokenizer_args or {}))
         if "input_ids" in model_input:
