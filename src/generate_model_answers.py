@@ -212,7 +212,7 @@ def generate_model_answers(data, model, tokenizer, device, model_name, do_sample
             model_output = generate(model_input, model, model_name, do_sample, output_scores, max_new_tokens=max_new_tokens,
                                     top_p=top_p, temperature=temperature, stop_token_id=stop_token_id, tokenizer=tokenizer)
 
-        answer = tokenizer.decode(model_output['sequences'][0][len(model_input[0]):])
+        answer = tokenizer.decode(model_output['sequences'][0][len(model_input[0]):], skip_special_tokens=True)
         if output_scores:
             scores = torch.concatenate(model_output['scores']).cpu()  # shape = (new_tokens, len(vocab))
             all_scores.append(scores)
